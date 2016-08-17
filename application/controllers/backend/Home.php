@@ -19,9 +19,9 @@ class Home extends CI_Controller {
 					'address' => $this->input->post('address'), 
 					'email' => $this->input->post('email'), 
 					'tel' => $this->input->post('tel'), 
-					'shipment' => $this->input->post('shipment'), 
-					'discount_shipment' => $this->input->post('discount_shipment'), 
-					'discount_money' => $this->input->post('discount_money'), 
+					'Facebook' => $this->input->post('Facebook'), 
+					'Twitter' => $this->input->post('Twitter'), 
+					'Google' => $this->input->post('Google'), 
 					'copyright' => $this->input->post('copyright'), 
 				);
 				$this->db->update('backadmin', $input); 
