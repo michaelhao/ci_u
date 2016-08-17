@@ -20,9 +20,9 @@ $stores = $CI->image->getImage($stores);
 			<thead>
 				<tr>
 					<th>排序</th>
+					<th>日期</th>
 					<th>圖片</th>
 					<th>標題</th>
-					<th>副標題</th>
 					<th>上架狀態</th>
 					<th>功能</th>
 				</tr>
@@ -38,6 +38,7 @@ $stores = $CI->image->getImage($stores);
 								送出
 							</span>
 						</td>
+						<td><?=$store["created_at"]?></td>
 						<td>
 							<?php if(!empty($store["pic"])) { ?>
 							<a href="<?=$store["pic"];?>" class="lightbox">
@@ -46,7 +47,6 @@ $stores = $CI->image->getImage($stores);
 							<?php } ?>
 						</td>
 						<td><?=$store["name"]?></td>
-						<td><?=$store["field1"]?></td>
 						<td>
 							<?php if ($store['show']==1) { ?>
 								<a href='###' id='open<?=$store["id"]?>' class='btn btn-success rightCHK' onclick="showUrl('store/show','<?=$store["id"]?>','open')">
