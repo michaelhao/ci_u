@@ -46,6 +46,12 @@ echo $this->form_builder->build_form_horizontal(
 	        'html' => get_single_fileupload_html(0),
 	    ),
 	    array(
+	        'id' => 'description',
+	        'label' => '簡述:',
+	        'type' => 'textarea',
+	        'class' => 'required',
+	    ),
+	    array(
 	        'id' => 'content',
 	        'type' => 'textarea',
 	        'label' => '內頁內容:',
