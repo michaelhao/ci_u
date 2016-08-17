@@ -22,7 +22,6 @@ $articles = $CI->image->getImage($articles);
 					<th>日期</th>
 					<th>圖片</th>
 					<th>標題</th>
-					<th>簡述</th>
 					<th>上架狀態</th>
 					<th>功能</th>
 				</tr>
@@ -41,7 +40,6 @@ $articles = $CI->image->getImage($articles);
 							<?php } ?>
 						</td>
 						<td><?=$article["name"];?></td>
-						<td><?=$article["description"];?></td>
 
 						<td>
 							<?php if ($article['show']==1) { ?>
