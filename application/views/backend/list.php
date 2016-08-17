@@ -3,10 +3,6 @@
 	<div class="col-lg-12">
 		<!-- Page tabs -->
 		<div class="tabbable page-tabs">
-			<!-- <ul class="nav nav-pills nav-justified"> -->
-				<!-- <li ><a href="#contact" data-toggle="tab"><i class="icon-paragraph-justify2"></i> 首頁BANNER<span class="label label-danger"></span></a></li> -->
-				<!-- <li class="active"><a href="#settings" data-toggle="tab"><i class="icon-cogs"></i> 前台頁面設定</a></li> -->
-			<!-- </ul> -->
 			<div class="tab-content">				
 				<!-- Fifth tab -->
 				<div class="tab-pane active fade in" id="settings">
@@ -43,36 +39,32 @@
 						        'label' => '網站描述:',
 						        'class' => 'required'
 						    ),
-						  //   array(
-						  //       'id' => 'address',
-						  //       'label' => '地址:',
-						  //       'class' => 'required'
-						  //   ),
-						  //   array(
-						  //       'id' => 'email',
-								// 'type' => 'email',
-						  //       'label' => 'Email:',
-						  //       'class' => 'required'
-						  //   ),
-						  //   array(
-						  //       'id' => 'tel',
-						  //       'label' => 'Tel:',
-						  //       'class' => 'required'
-						  //   ),
 						    array(
-						        'id' => 'shipment',
-						        'label' => '一般運費:',
+						        'id' => 'address',
+						        'label' => '地址:',
 						        'class' => 'required'
 						    ),
 						    array(
-						        'id' => 'discount_shipment',
-						        'label' => '滿額運費:',
+						        'id' => 'email',
+						        'label' => 'Email:',
 						        'class' => 'required'
 						    ),
 						    array(
-						        'id' => 'discount_money',
-						        'label' => '運費滿額標準:',
+						        'id' => 'tel',
+						        'label' => 'Tel',
 						        'class' => 'required'
+						    ),
+						    array(
+						        'id' => 'Facebook',
+						        'label' => 'Facebook連結',
+						    ),
+						    array(
+						        'id' => 'Twitter',
+						        'label' => 'Twitter連結',
+						    ),
+						    array(
+						        'id' => 'Google',
+						        'label' => 'Google連結',
 						    ),
 						    array(
 						        'id' => 'copyright',
