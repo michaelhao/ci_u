@@ -64,7 +64,7 @@ class Site extends CI_Controller {
 	public function news()
 	{
 		// 每頁抓取資料數
-		$count = 5;
+		$count = 4;
 
 		// 取得當下頁數
 		$index = 0;
@@ -98,14 +98,46 @@ class Site extends CI_Controller {
 	 --------------------------	*/
 	public function option()
 	{
-		$this->load->view('site/option');
+		// 抓出全部資料
+		$datas = $this->db->get_where('article', array(
+		    'Recover' => 0, 
+		    'panel' => 16,
+		    'show' => 1
+		))->result_array();
+
+		// 抓出塞選資料
+		$news = $this->db->order_by('start_at','desc')->get_where('article', array(
+		    'Recover' => 0, 
+		    'panel' => 16,
+		    'show' => 1
+		))->result_array();
+
+		// 抓取圖片
+    	$news = $this->image->getImage($news);
+
+		$data['news'] = $news;
+		$this->load->view('site/option', $data);
 	}
 	/* --------------------------
 		產品
 	 --------------------------	*/
 	public function products()
 	{
-		$this->load->view('site/products');
+		$input = array();
+		$id = $this->input->get('id');
+		// p($id);
+		// 抓出單筆資料
+		$products = $this->db->get_where('store', array(
+		    'Recover' => 0, 
+		    'panel' => 12,
+		    'id' => $id,
+		))->result_array();
+		// p($products);
+		$products = $this->image->getImage($products);
+
+		$input['products'] = $products;
+
+		$this->load->view('site/products',$input);
 	}
 	public function products2()
 	{
@@ -178,32 +210,6 @@ class Site extends CI_Controller {
 		$this->db->set('visitor', '`visitor`+ 1', FALSE);
 		$this->db->update('product');
 		$this->load->view('site/shop_detail');			
-	}
-
-	public function news_detail()
-	{
-		$input = array();
-		$id = $this->input->get('id');
-
-		// 抓出單筆資料
-		$news = $this->db->get_where('article', array(
-		    'Recover' => 0, 
-		    'panel' => 9,
-		    'id' => $id,
-		))->result_array();
-		$news = $this->image->getImage($news);
-		$input['new'] = $news[0];
-
-		// 抓出前四筆最新消息
-		$news = $this->db->limit(4)->order_by('start_at','desc')->get_where('article', array(
-		    'Recover' => 0, 
-		    'panel' => 9,
-		    'show' => 1
-		))->result_array();
-		$news = $this->image->getImage($news);
-		$input['news'] = $news;
-
-		$this->load->view('site/news_detail', $input);
 	}
 
 	/* --------------------------
@@ -353,15 +359,6 @@ class Site extends CI_Controller {
 		}
 
 		$this->load->view('site/store_detail',$input);
-	}
-
-	/* --------------------------
-		人員招募
-	 --------------------------	*/
-	public function recruiting()
-	{
-		$recruiting=$this->db->get_where('static', array('id' => 3,))->row_array();
-		$this->load->view('site/recruiting',array('recruiting'=>$recruiting));
 	}
 
 	/* --------------------------
