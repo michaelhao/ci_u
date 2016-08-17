@@ -1,3 +1,11 @@
+<?php
+   $stores=$this->db->order_by('id','des')->get_where('store', array(
+       'Recover' => 0, 
+       'show' => 1, 
+       'panel' => 12 
+   ))->result_array();
+   ?>
+<!-- Page Header-->
 <header class="page-head">
         <!-- RD Navbar-->
         <div class="rd-navbar-wrap" style="height: 144px;">
@@ -9,7 +17,6 @@
                 <button data-rd-navbar-toggle=".rd-navbar-nav-wrap" class="rd-navbar-toggle toggle-original"><span></span></button>
                 <div class="reveal-md-flex range-md-justify range-sm-middle">
                   <div>
-                    <!-- RD Navbar Brand-->
                     <img class="hidden-xs" src="<?=base_url()?>public/site/images/bluebearlogo_154x125.png">
                   </div>
                   <div class="rd-navbar-nav-container offset-top-10 offset-md-top-0 toggle-original-elements">
@@ -17,13 +24,17 @@
                       <div class="rd-navbar-nav-wrap text-md-left toggle-original-elements">
                         <!-- RD Navbar Nav-->
                         <ul class="rd-navbar-nav">
-                          <li class="rd-navbar--has-dropdown rd-navbar-submenu"><a href="./">首頁</a>
-                          <li class="active"><a href="<?=site_url('site/about')?>">關於我們</a></li>
+                          <li class="active rd-navbar--has-dropdown rd-navbar-submenu"><a href="./">首頁</a>
+                          <li><a href="<?=site_url('site/about')?>">關於我們</a></li>
                           <li class="rd-navbar--has-dropdown rd-navbar-submenu"><a>產品介紹</a>
                             <!-- RD Navbar Dropdown-->
                             <ul class="rd-navbar-dropdown">
-                              <li><a href="<?=site_url('site/products2')?>">防蚊手環</a></li>
-                              <li><a href="<?=site_url('site/products')?>">酷炫熊手錶</a></li>
+                              <?php foreach ($stores as $key => $store): ?>
+                                <a href="<?=site_url('site/products')?>?id=<?=$store['id']?>" class="hover-format">
+                                <span><i class="fa fa-search"></i></span>
+                            </a>
+                                <li><?=$store['name']?></li>
+                              <?php endforeach ?>
                             </ul>
                           <span class="rd-navbar-submenu-toggle"></span></li>
                           <li><a href="<?=site_url('site/news')?>">最新消息</a></li>
