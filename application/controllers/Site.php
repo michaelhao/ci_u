@@ -139,191 +139,9 @@ class Site extends CI_Controller {
 
 		$this->load->view('site/products',$input);
 	}
-	public function products2()
-	{
-		$this->load->view('site/products2');
-	}
 
 	/* --------------------------
-		產品
-	 --------------------------	*/
-	public function shop()
-	{
-		$index = 0;
-        if ($this->input->get('per_page')) {
-            $index = $this->input->get('per_page');
-        }
-        // 取得 TYPE ID		
-        $types = $this->db->get_where('type', array(
-            'parent_id' => 1,
-            'recover' => 0
-        ))->result_array();
-        
-        if ($types) {
-            if ($this->input->get('type')) {
-            	$type = $this->input->get('type');
-                $query_array = array(
-                    'type' => $this->input->get('type'),
-                    'recover' => 0,
-                    'show' => 1,
-                );
-            } else {
-            	$type = '';
-                $query_array = array(
-                    'recover' => 0,
-                    'show' => 1,
-                );
-            }
-        }
-        
-        // 抓出全部資料
-        $datas  = $this->db->where_in('kind', array(1,3))->get_where('product', $query_array)->result_array();
-        $config = $this->get_pagination_config(site_url('site/shop')."?type=".$type, count($datas), 6);
-        
-        // 抓出分頁資料
-        $products = $this->db->order_by('sort', 'desc')->where_in('kind', array(1,3))->get_where('product', $query_array, $config['per_page'], $index)->result_array();
-        
-        foreach ($products as $key => $product) {
-            $product_image         = $this->db->get_where('image', array(
-                'source_id' => $product['id'],
-                'panel' => $product['panel'],
-                'file_number' => 0,
-                'recover' => 0
-            ))->row_array();
-            $products[$key]['pic'] = $product_image['url'];
-            
-            // 取得類別
-            $producttype                = $this->db->get_where('type', array(
-                'id' => $product['type']
-            ))->row_array();
-            $products[$key]['type_str'] = $producttype['name'];
-        }
-        
-        $data['types']    = $types;
-        $data['products'] = $products;
-        $this->load->view('site/shop', $data);
-	}
-
-	public function shop_detail()
-	{
-		$this->db->where('id', $this->input->get('id'));//瀏覽人數+1
-		$this->db->set('visitor', '`visitor`+ 1', FALSE);
-		$this->db->update('product');
-		$this->load->view('site/shop_detail');			
-	}
-
-	/* --------------------------
-		媒體報導
-	 --------------------------	*/
-	public function blog()
-	{
-		// 每頁抓取資料數
-		$count = 1;
-
-		// 取得當下頁數
-		$index = 0;
-		if($this->input->get('per_page')) {
-			$index = $this->input->get('per_page');
-		}
-
-		// 抓出媒體報導類別
-		$types=$this->db->get_where('type', array('parent_id' => 2, 'recover' => 0,  ))->result_array();
-		$data['types'] = $types;
-
-		// 取得類別
-		if($this->input->get('type')) {
-			$type = $this->input->get('type');
-		} else {
-			// 若無類別資料類別預設0
-			if(empty($types)) {
-				$type = 0;
-			} else {
-				$type = $types[0]['id'];
-			}
-		}
-
-		// 抓出全部資料
-		$datas = $this->db->get_where('article', array(
-		    'Recover' => 0, 
-		    'panel' => 4,
-		    'show' => 1,
-		    'type' => $type
-		))->result_array();
-		$config = $this->get_pagination_config(site_url('site/blog')."?type=".$type, count($datas),$count);
-
-		// 抓出塞選資料
-		$blogs = $this->db->order_by('start_at','desc')->get_where('article', array(
-		    'Recover' => 0, 
-		    'panel' => 4,
-		    'show' => 1,
-		    'type' => $type
-		), $config['per_page'], $index)->result_array();
-
-		// 抓取圖片
-    	$blogs = $this->image->getImage($blogs);
-		$data['blogs'] = $blogs;
-
-		$this->load->view('site/blog', $data);
-	}
-
-	public function blog_detail()
-	{
-		$input = array();
-		$id = $this->input->get('id');
-
-		// 抓出單筆資料
-		$blogs = $this->db->get_where('article', array(
-		    'Recover' => 0, 
-		    'panel' => 4,
-		    'id' => $id,
-		))->result_array();
-		$blogs = $this->image->getImage($blogs);
-		$input['blog'] = $blogs[0];
-
-		// 抓出媒體報導類別
-		$types=$this->db->get_where('type', array('parent_id' => 2, 'recover' => 0,  ))->result_array();
-		$input['types'] = $types;
-
-		$this->load->view('site/blog_detail', $input);
-	}
-
-	/* --------------------------
-		活動下載
-	 --------------------------	*/
-	public function promotions()
-	{
-		// 每頁抓取資料數
-		$count = 4;
-
-		// 取得當下頁數
-		$index = 0;
-		if($this->input->get('per_page')) {
-			$index = $this->input->get('per_page');
-		}
-
-		// 抓出全部資料
-		$datas = $this->db->get_where('article', array(
-		    'Recover' => 0, 
-		    'panel' => 10,
-		    'show' => 1,
-		))->result_array();
-		$config = $this->get_pagination_config(site_url('site/promotions'), count($datas),$count);
-
-		// 抓出塞選資料
-		$promotions = $this->db->order_by('start_at','desc')->get_where('article', array(
-		    'Recover' => 0, 
-		    'panel' => 10,
-		    'show' => 1,
-		), $config['per_page'], $index)->result_array();
-
-		// 抓取圖片
-    	$promotions = $this->image->getImage($promotions);
-		$data['promotions'] = $promotions;
-		$this->load->view('site/promotions', $data);
-	}
-
-	/* --------------------------
-		分店管理
+		商品介紹
 	 --------------------------	*/
 	public function store()
 	{
@@ -337,28 +155,6 @@ class Site extends CI_Controller {
     	$stores = $this->image->getImage($stores);
 		$data['stores'] = $stores;
 		$this->load->view('site/store', $data);
-	}
-
-	public function store_detail()
-	{
-		$input = array();
-		$id = $this->input->get('id');
-
-		// 抓出單筆資料
-		$stores = $this->db->get_where('store', array(
-		    'Recover' => 0, 
-		    'show' => 1,
-		    'id' => $id,
-		))->result_array();
-
-		if(!empty($stores)) {
-			$stores = $this->image->getImage($stores);
-			$input['store'] = $stores[0];
-		} else {
-			$input['store'] = array('name' => '', 'content' => '');
-		}
-
-		$this->load->view('site/store_detail',$input);
 	}
 
 	/* --------------------------
@@ -381,14 +177,13 @@ class Site extends CI_Controller {
         $config['last_link']      = '&raquo;'; //自訂結束分頁連結名稱
         $config['last_tag_open']  = '<li>';
         $config['last_tag_close'] = '</li>';
+        $config['next_link']    = 'Next';
+   		$config['next_tag_open'] = '<li class="next_style">'; //自訂下一頁標籤
+   		$config['next_tag_close'] = '</li>';
         
-        $config['next_link']      = 'Next page';
-        $config['next_tag_open']  = '<li>'; //自訂下一頁標籤
-        $config['next_tag_close'] = '</li>';
-        
-        $config['prev_link']      = 'Last page';
-        $config['prev_tag_open']  = '<li>';
-        $config['prev_tag_close'] = '</li>';
+        $config['prev_link']      = 'Last';
+        $config['prev_tag_open'] = '<li class="last_style">';
+    	$config['prev_tag_close'] = '</li>';
         $config['cur_tag_open']   = '<li class="active"><a>';
         $config['cur_tag_close']  = '</a></li>';
         $config['num_tag_open']   = '<li>';
