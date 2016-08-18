@@ -3,9 +3,15 @@ $row=$this->db->get_where('backadmin', array('id'=>1))->row_array();
 ?>
 <!DOCTYPE html>
 <html lang="en" class="wide wow-animation">
+
   <head>
     <!-- Site Title-->
-    <title><?=$row['webtitle'];?></title>
+    <meta name="author" content="台灣暢宇國際" />
+    <meta name="decription" content="台灣暢宇國際描述"/>
+    <meta name="keywords" content="台灣暢宇國際關鍵字" />
+    <meta property="og:title" content="台灣暢宇國際" />
+    <meta property="og:description" content="台灣暢宇國際描述" />
+    <title>台灣暢宇國際</title>
     <meta name="format-detection" content="telephone=no">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
