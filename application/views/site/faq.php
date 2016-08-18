@@ -73,7 +73,7 @@
     <?php 
     include("layout/footer.php");
     ?>
-    <script src="js/core.min.js"></script>
-    <script src="js/script.js"></script>
+<script src="<?=base_url()?>public/site/js/core.min.js"></script>
+<script src="<?=base_url()?>public/site/js/script.js"></script>
   </body>
 </html>
