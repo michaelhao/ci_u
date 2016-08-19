@@ -2,7 +2,7 @@
    include("layout/meta.php");
    include("layout/header.php");
    
-   $banners=$this->db->order_by('id','des')->get_where('article', array(
+   $banners=$this->db->order_by('sort','desc')->get_where('article', array(
        'Recover' => 0, 
        'show' => 1, 
        'panel' => 8 
