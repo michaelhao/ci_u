@@ -1,41 +1,39 @@
 <?php
-$foots=$this->db->order_by('id','des')->get_where('backadmin', array(
-       'id' => 1, 
-   ))->result_array();
-?>
+   $foots=$this->db->order_by('id','des')->get_where('backadmin', array(
+          'id' => 1, 
+      ))->result_array();
+   ?>
 <div class="offset-top-50 offset-md-top-110">
-<!-- Page Footer-->
-<footer class="page-footer text-center">
-   <div class="footer-container footer-copyright">
-      <div class="shell">
-         <div class="reveal-sm-flex range-sm-justify range-sm-reverse range-sm-middle">
-            <div>
-               <ul class="list-inline list-inline-md">
-               <?php foreach ($foots as $key => $foot): ?>
-                  <?php if (!empty($foot['Facebook'])) { ?>
-                           <li><a href="<?=$foot['Facebook']?>" class="icon fa-facebook icon-default"></a></li>
-                        <?php } ?>
-                  <?php if (!empty($foot['Twitter'])) { ?>
-                          <li><a href="<?=$foot['Twitter']?>" class="icon fa-twitter icon-default"></a></li>
-                        <?php } ?>
-                  <?php if (!empty($foot['Google'])) { ?>
-                           <li><a href="<?=$foot['Google']?>" class="icon fa-google-plus icon-default"></a></li>
-                        <?php } ?>
-               <?php endforeach ?>
-               </ul>
-            </div>
-            <div class="offset-top-15 offset-sm-top-0">
-            <?php foreach ($foots as $key => $foot): ?>
-               <p><?=$foot['copyright']?></p> 
-            <?php endforeach ?>
-               
+   <!-- Page Footer-->
+   <footer class="page-footer text-center">
+      <div class="footer-container footer-copyright">
+         <div class="shell">
+            <div class="reveal-sm-flex range-sm-justify range-sm-reverse range-sm-middle">
+               <div>
+                  <ul class="list-inline list-inline-md">
+                     <?php foreach ($foots as $key => $foot): ?>
+                     <?php if (!empty($foot['Facebook'])) { ?>
+                     <li><a href="<?=$foot['Facebook']?>" class="icon fa-facebook icon-default"></a></li>
+                     <?php } ?>
+                     <?php if (!empty($foot['Twitter'])) { ?>
+                     <li><a href="<?=$foot['Twitter']?>" class="icon fa-twitter icon-default"></a></li>
+                     <?php } ?>
+                     <?php if (!empty($foot['Google'])) { ?>
+                     <li><a href="<?=$foot['Google']?>" class="icon fa-google-plus icon-default"></a></li>
+                     <?php } ?>
+                     <?php endforeach ?>
+                  </ul>
+               </div>
+               <div class="offset-top-15 offset-sm-top-0">
+                  <?php foreach ($foots as $key => $foot): ?>
+                  <p><?=$foot['copyright']?></p>
+                  <?php endforeach ?>
+               </div>
             </div>
          </div>
       </div>
-   </div>
-</footer>
-</div>      
-
+   </footer>
+</div>
 <!-- Global Mailform Output-->
 <div id="form-output-global" class="snackbars"></div>
 <!-- PhotoSwipe Gallery-->
