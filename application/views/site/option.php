@@ -30,7 +30,7 @@
                      <p>
                         <?=$new['description']?><BR><BR>
                         <?php if (!empty($new['content'])) { ?>
-                           <a href="<?=$new['content']?>" target="_blank">【教學影片】</a>
+                        <a href="<?=$new['content']?>" target="_blank">【教學影片】</a>
                         <?php } ?>
                      </p>
                   </div>
