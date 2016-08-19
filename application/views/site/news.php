@@ -2,30 +2,29 @@
    include("layout/meta.php");
    include("layout/header.php");
    ?>
-   
 <style type="text/css">
    .pagination > .next_style > a{
-    color :#0095e5;
-    font-style: normal;
-    font-weight: 800;}
-  .pagination > .last_style > a{
-    color :#0095e5;
-    font-style: normal;
-    font-weight: 800;}
-  .pagination .next_style:after {
-    content: '\f105';
-    font-family: 'FontAwesome';
-    color: #616262;
-    padding-left: 7px;
-    position: relative;
-    top: 1px;}
-  .pagination .last_style:before {
-    content: '\f104';
-    font-family: 'FontAwesome';
-    color: #616262;
-    padding-right: 7px;
-    position: relative;
-    top: 1px;}
+   color :#0095e5;
+   font-style: normal;
+   font-weight: 800;}
+   .pagination > .last_style > a{
+   color :#0095e5;
+   font-style: normal;
+   font-weight: 800;}
+   .pagination .next_style:after {
+   content: '\f105';
+   font-family: 'FontAwesome';
+   color: #616262;
+   padding-left: 7px;
+   position: relative;
+   top: 1px;}
+   .pagination .last_style:before {
+   content: '\f104';
+   font-family: 'FontAwesome';
+   color: #616262;
+   padding-right: 7px;
+   position: relative;
+   top: 1px;}
 </style>
 <!-- Page-->
 <div class="page text-center">
@@ -66,7 +65,7 @@
                <nav class="pagination">
                   <?php echo $this->pagination->create_links();?>
                </nav>
-                </BR>
+               </BR>
                <BR><BR>
             </div>
          </div>
