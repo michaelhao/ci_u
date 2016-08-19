@@ -1,11 +1,11 @@
 <?php
    include("layout/meta.php");
    include("layout/header.php");
-
+   
    $datas=$this->db->order_by('id','des')->get_where('backadmin', array(
        'id' => 1,
    ))->result_array();
-
+   
    ?>
 <body>
    <!-- Page-->
@@ -67,7 +67,7 @@
                         </div>
                      </div>
                      <div class="cell-sm-4 offset-top-60 offset-sm-top-0">
-                      <?php foreach ($datas as $key => $data): ?>
+                        <?php foreach ($datas as $key => $data): ?>
                         <h4>地址</h4>
                         <div><a href="#" class="text-gray-light"><?=$data['address']?></a></div>
                         <h4>電話</h4>
