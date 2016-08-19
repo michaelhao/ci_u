@@ -4,7 +4,6 @@ $articles=$this->db->order_by('sort','desc')->get_where('article', array(
 	'Recover' => 0, 
 	'panel' => $this->input->get('panel'), 
 ))->result_array();
-// 抓取管理者類別
 
 $CI =& get_instance();
 $CI->load->library('image');
