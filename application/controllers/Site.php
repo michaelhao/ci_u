@@ -106,7 +106,7 @@
    		))->result_array();
    
    		// 抓出塞選資料
-   		$news = $this->db->order_by('start_at','desc')->get_where('article', array(
+   		$news = $this->db->order_by('sort','desc')->get_where('article', array(
    		    'Recover' => 0, 
    		    'panel' => 16,
    		    'show' => 1
@@ -126,12 +126,14 @@
    		$input = array();
    		$id = $this->input->get('id');
    		// p($id);
-   		// 抓出單筆資料
-   		$products = $this->db->get_where('store', array(
-   		    'Recover' => 0, 
-   		    'panel' => 12,
-   		    'id' => $id,
-   		))->result_array();
+   		
+      // 抓出塞選資料
+      $products = $this->db->order_by('sort','desc')->get_where('store', array(
+          'Recover' => 0, 
+          'panel' => 12,
+          'id' => $id,
+      ))->result_array();
+
    		// p($products);
    		$products = $this->image->getImage($products);
    
