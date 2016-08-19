@@ -25,21 +25,15 @@
       <main class="page-content">
          <!-- Swiper-->
          <section data-height="" data-min-height="240px" data-autoplay="5000" data-dots="true" class="swiper-container swiper-slider swiper-slider-home">
-
             <div class="swiper-wrapper">
-
                <?php foreach ($banners as $key => $banner): ?>
                <div data-slide-bg="<?=$banner['pic']?>" class="swiper-slide">
-
                   <div class="swiper-slide-caption">
-
                      <div class="shell">
                         <h1 class="text-primary"><?=$banner['content']?></h1>
                         <h4 style="color:#fff;" class="text-gray-light veil reveal-sm-block text-regular"></h4>
                      </div>
-
                   </div>
-
                </div>
                <?php endforeach ?>
             </div>
