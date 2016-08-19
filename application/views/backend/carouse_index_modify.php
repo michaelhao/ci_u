@@ -42,11 +42,6 @@ echo $this->form_builder->build_form_horizontal(
 	        'type' => 'textarea',
 	        'class' => 'required ckeditor',
 	    ),
-		array(
-	        'id' => 'field1',
-	        'label' => 'url:',
-	        'class' => 'required',
-	    ),
 	    array(
 	        'id' => 'show',
 	        'type' => 'dropdown',
