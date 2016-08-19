@@ -13,13 +13,13 @@
                   <ul class="list-inline list-inline-md">
                      <?php foreach ($foots as $key => $foot): ?>
                      <?php if (!empty($foot['Facebook'])) { ?>
-                     <li><a href="<?=$foot['Facebook']?>" class="icon fa-facebook icon-default"></a></li>
+                     <li><a href="<?=$foot['Facebook']?>" class="icon fa-facebook icon-default" target="_blank"></a></li>
                      <?php } ?>
                      <?php if (!empty($foot['Twitter'])) { ?>
-                     <li><a href="<?=$foot['Twitter']?>" class="icon fa-twitter icon-default"></a></li>
+                     <li><a href="<?=$foot['Twitter']?>" class="icon fa-twitter icon-default" target="_blank"></a></li>
                      <?php } ?>
                      <?php if (!empty($foot['Google'])) { ?>
-                     <li><a href="<?=$foot['Google']?>" class="icon fa-google-plus icon-default"></a></li>
+                     <li><a href="<?=$foot['Google']?>" class="icon fa-google-plus icon-default" target="_blank"></a></li>
                      <?php } ?>
                      <?php endforeach ?>
                   </ul>
