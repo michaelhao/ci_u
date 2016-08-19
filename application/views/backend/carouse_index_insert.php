@@ -41,11 +41,6 @@ echo $this->form_builder->build_form_horizontal(
 	        'class' => 'required ckeditor',
 	    ),
 	    array(
-	        'id' => 'field1',
-	        'label' => 'url:',
-	        'class' => 'required',
-	    ),
-	    array(
 	        'id' => 'show',
 	        'type' => 'dropdown',
 	        'label' => '上架狀態:',
