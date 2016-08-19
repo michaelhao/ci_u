@@ -1,5 +1,5 @@
 <?php
-   $stores=$this->db->order_by('id','des')->get_where('store', array(
+   $stores=$this->db->order_by('sort','desc')->get_where('store', array(
        'Recover' => 0, 
        'show' => 1, 
        'panel' => 12 
